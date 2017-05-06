@@ -20,7 +20,7 @@
   "dependencies": {
     "axios": "^0.15.2",
     "babel-polyfill": "^6.16.0",
-    "keycloak-js": "^2.3.0",
+    "keycloak-js": "3.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

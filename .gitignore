@@ -4,4 +4,3 @@ npm-debug.log
 bin
 .idea
 *.iml
-yarn.lock
