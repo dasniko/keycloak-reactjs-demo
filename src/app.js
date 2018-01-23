@@ -32,27 +32,27 @@ const app = (
 );
 
 const kc = Keycloak('/keycloak.json');
-kc.init({onLoad: 'check-sso'}).success(authenticated => {
+kc.init({onLoad: 'login-required'}).success(authenticated => {
   if (authenticated) {
     store.getState().keycloak = kc;
-
-    setInterval(() => {
-      kc.updateToken(10).error(() => kc.logout());
-    }, 10000);
-
     ReactDOM.render(app, document.getElementById("app"));
-
-  } else {
-    // show possibly other page here...
-    kc.login();
   }
 });
 
 axios.interceptors.request.use(config => {
-  config.headers = {...config.headers, ...{
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Authorization: 'Bearer ' + kc.token
-  }};
-  return config;
+  return refreshToken().then(() => {
+    config.headers.Authorization = 'Bearer ' + kc.token;
+    return Promise.resolve(config)
+  }).catch(() => {
+    kc.login();
+  })
 });
+
+// need to wrap the KC "promise object" into a real Promise object
+const refreshToken = (minValidity = 5) => {
+  return new Promise((resolve, reject) => {
+    kc.updateToken(minValidity)
+      .success(() => resolve())
+      .error(error => reject(error))
+  });
+};
