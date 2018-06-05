@@ -1,32 +1,36 @@
-import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {applyMiddleware, createStore} from "redux";
-import {Router, Route, browserHistory} from "react-router";
-import {syncHistoryWithStore} from "react-router-redux";
+import {Router, Route, Switch} from "react-router-dom";
+import {routerMiddleware} from "react-router-redux";
 import thunk from "redux-thunk";
-import bookState from "./reducers";
-import BookApp from "./components/bookApp";
-import BookBox from "./components/bookBox";
-import BookDetails from "./components/bookDetails";
+import createHistory from 'history/createBrowserHistory';
+import rootReducer from "./modules";
+import BookBox from "./components/BookBox";
+import BookDetails from "./components/BookDetails";
 import Keycloak from "keycloak-js";
 import axios from "axios";
 
+const history = createHistory();
+const middleware = [
+  thunk,
+  routerMiddleware(history),
+];
 const store = createStore(
-  bookState,
-  applyMiddleware(thunk)
+  rootReducer,
+  applyMiddleware(...middleware)
 );
-
-const history = syncHistoryWithStore(browserHistory, store);
 
 const app = (
   <Provider store={store}>
     <Router history={history}>
-      <Route component={BookApp}>
-        <Route path="/" component={BookBox}/>
-        <Route path="books/:bookId" component={BookDetails}/>
-      </Route>
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={BookBox}/>
+          <Route path="/books/:bookId" component={BookDetails}/>
+        </Switch>
+      </div>
     </Router>
   </Provider>
 );

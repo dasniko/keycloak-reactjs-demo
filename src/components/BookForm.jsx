@@ -1,22 +1,18 @@
 import React from "react";
 
 export default class BookForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    var author = this.refs.author.value.trim();
-    var title = this.refs.title.value.trim();
+  handleSubmit = event => {
+    event.preventDefault();
+    const author = this.refs.author.value.trim();
+    const title = this.refs.title.value.trim();
     if (!author || !title) {
       return;
     }
     this.props.onBookSubmit({author: author, title: title});
     this.refs.author.value = '';
     this.refs.title.value = '';
-  }
+  };
 
   render() {
     return (
