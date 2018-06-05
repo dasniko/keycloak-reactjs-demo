@@ -36,27 +36,33 @@ const app = (
 );
 
 const kc = Keycloak('/keycloak.json');
-kc.init({onLoad: 'login-required'}).success(authenticated => {
-  if (authenticated) {
-    store.getState().keycloak = kc;
-    ReactDOM.render(app, document.getElementById("app"));
-  }
-});
+const token = localStorage.getItem('kc_token');
+const refreshToken = localStorage.getItem('kc_refreshToken');
 
-axios.interceptors.request.use(config => {
-  return refreshToken().then(() => {
-    config.headers.Authorization = 'Bearer ' + kc.token;
-    return Promise.resolve(config)
-  }).catch(() => {
-    kc.login();
-  })
-});
-
-// need to wrap the KC "promise object" into a real Promise object
-const refreshToken = (minValidity = 5) => {
-  return new Promise((resolve, reject) => {
-    kc.updateToken(minValidity)
-      .success(() => resolve())
-      .error(error => reject(error))
+kc.init({onLoad: 'login-required', token, refreshToken})
+  .then(authenticated => {
+    if (authenticated) {
+      store.getState().keycloak = kc;
+      updateLocalStorage();
+      ReactDOM.render(app, document.getElementById("app"));
+    }
   });
+
+axios.interceptors.request.use(config => (
+  kc.updateToken(5)
+    .then(refreshed => {
+      if (refreshed) {
+        updateLocalStorage()
+      }
+      config.headers.Authorization = 'Bearer ' + kc.token;
+      return Promise.resolve(config)
+    })
+    .catch(() => {
+      kc.login();
+    })
+));
+
+const updateLocalStorage = () => {
+  localStorage.setItem('kc_token', kc.token);
+  localStorage.setItem('kc_refreshToken', kc.refreshToken);
 };
