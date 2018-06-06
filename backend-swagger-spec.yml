@@ -21,6 +21,8 @@ paths:
       - "books"
       summary: "Get all books from the box"
       operationId: "getAllBooks"
+      security:
+      - oauth2: [global]
       produces:
       - "application/json"
       responses:
@@ -47,6 +49,8 @@ paths:
               type: "string"
             author:
               type: "string"
+      security:
+      - oauth2: [global]
       consumes:
       - "application/json"
       responses:
@@ -67,6 +71,8 @@ paths:
         required: true
         type: "integer"
         format: "int32"
+      security:
+      - oauth2: [global]
       produces:
       - "application/json"
       responses:
@@ -90,6 +96,8 @@ paths:
         required: true
         type: "integer"
         format: "int32"
+      security:
+      - oauth2: [global]
       responses:
         204:
           description: "Book has been successfully removed from box"
@@ -97,6 +105,14 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Book not found"
+securityDefinitions:
+  oauth2:
+    type: "oauth2"
+    authorizationUrl: "http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth"
+    tokenUrl: "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token"
+    flow: "accessCode"
+    scopes:
+      global: "global"
 definitions:
   Book:
     type: "object"
