@@ -39,7 +39,7 @@ const kc = Keycloak('/keycloak.json');
 const token = localStorage.getItem('kc_token');
 const refreshToken = localStorage.getItem('kc_refreshToken');
 
-kc.init({onLoad: 'login-required', token, refreshToken})
+kc.init({onLoad: 'login-required', promiseType: 'native', token, refreshToken})
   .then(authenticated => {
     if (authenticated) {
       store.getState().keycloak = kc;
