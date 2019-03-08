@@ -36,33 +36,19 @@ const app = (
 );
 
 const kc = Keycloak('/keycloak.json');
-const token = localStorage.getItem('kc_token');
-const refreshToken = localStorage.getItem('kc_refreshToken');
-
 kc.init({onLoad: 'login-required', promiseType: 'native', token, refreshToken})
   .then(authenticated => {
     if (authenticated) {
       store.getState().keycloak = kc;
-      updateLocalStorage();
       ReactDOM.render(app, document.getElementById("app"));
     }
   });
 
 axios.interceptors.request.use(config => (
   kc.updateToken(5)
-    .then(refreshed => {
-      if (refreshed) {
-        updateLocalStorage()
-      }
+    .then(() => {
       config.headers.Authorization = 'Bearer ' + kc.token;
       return Promise.resolve(config)
     })
-    .catch(() => {
-      kc.login();
-    })
+    .catch(kc.login())
 ));
-
-const updateLocalStorage = () => {
-  localStorage.setItem('kc_token', kc.token);
-  localStorage.setItem('kc_refreshToken', kc.refreshToken);
-};
