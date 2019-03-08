@@ -1,10 +1,10 @@
 import React from "react";
 import Book from "./Book";
 
-export default props => (
+export default ({books, onBookDelete}) => (
   <div className="bookList col-sm-6">
-    {props.books.map((book, index) => (
-      <Book book={book} key={index} onBookDelete={props.onBookDelete}/>
+    {books.map((book, index) => (
+      <Book book={book} key={index} onBookDelete={onBookDelete}/>
     ))}
   </div>
 )

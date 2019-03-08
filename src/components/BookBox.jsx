@@ -12,7 +12,7 @@ class BookBox extends React.Component {
   }
 
   render() {
-    const kc = this.props.kc;
+    const {kc, books, deleteBook, addBook} = this.props;
     return (
       <div className="bookBox row">
         <h1>
@@ -21,8 +21,8 @@ class BookBox extends React.Component {
         </h1>
         <h1>Best Books ever!</h1>
         <hr/>
-        <BookList books={this.props.books} onBookDelete={this.props.deleteBook}/>
-        <BookForm onBookSubmit={this.props.addBook}/>
+        <BookList books={books} onBookDelete={deleteBook}/>
+        <BookForm onBookSubmit={addBook}/>
       </div>
     );
   }
