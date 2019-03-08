@@ -7,7 +7,11 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
-  "author": "Niko Köbler <niko@n-k.de> (http://www.n-k.de)",
+  "author": {
+    "name": "Niko Köbler",
+    "email": "niko@n-k.de",
+    "url": "https.//www.n-k.de"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.3.12",
@@ -15,7 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "keycloak-js": "^4.8.1",
+    "keycloak-js": "^5.0.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "5.1.1",
