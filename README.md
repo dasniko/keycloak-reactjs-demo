@@ -13,13 +13,8 @@ Demo for React.JS and Keycloak SSO integration.
 
 ## Backend service
 
-There has to be a backend service running.
-Currently, this project is configured (see `proxy` in `package.json`) to have a backend service running at `localhost:8081`.
+For convenience, I provide a backend service running at the location specified in [`setupProxy.js`](./src/setupProxy.js) file.
 
-For my demo purposes, I'm using [dasniko/keycloak-javaee-demo](https://github.com/dasniko/keycloak-javaee-demo) as a possible example.
-
-But there's also a swagger spec ([backend-swagger-spec.yml](./backend-swagger-spec.yml)) providing the API of the needed backend, so you can spin up a service on your own.
+However, there's also a swagger spec ([`backend-swagger-spec.yml`](./backend-swagger-spec.yml)) providing the API of the needed backend, so you can spin up a service on your own.
 The URLs in the `securityDefinitions` section shows my local Keycloak setup, you have to adjust this possibly!
-()Also don't forget to adjust the host/port in the `proxy` section of `package.json`, if you run your service on ohters than default.)
-
-_(currentlly I'm working on a ready-to-use-service which I can provide for your convenience)_
+(Also don't forget to adjust the host/port in the `setupProxy.js` file, if you run your service on ohters than default.)
