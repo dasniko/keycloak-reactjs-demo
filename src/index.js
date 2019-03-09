@@ -35,8 +35,8 @@ const app = (
   </Provider>
 );
 
-const kc = Keycloak('/keycloak.json');
-kc.init({onLoad: 'login-required', promiseType: 'native', token, refreshToken})
+const kc = new Keycloak('/keycloak.json');
+kc.init({onLoad: "login-required", promiseType: 'native'})
   .then(authenticated => {
     if (authenticated) {
       store.getState().keycloak = kc;
@@ -50,5 +50,5 @@ axios.interceptors.request.use(config => (
       config.headers.Authorization = 'Bearer ' + kc.token;
       return Promise.resolve(config)
     })
-    .catch(kc.login())
+    .catch(kc.login)
 ));
