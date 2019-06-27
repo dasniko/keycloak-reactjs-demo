@@ -5,14 +5,14 @@ import {applyMiddleware, createStore} from "redux";
 import {Router, Route, Switch} from "react-router-dom";
 import {routerMiddleware} from "react-router-redux";
 import thunk from "redux-thunk";
-import createHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
 import rootReducer from "./modules";
 import BookBox from "./components/BookBox";
 import BookDetails from "./components/BookDetails";
 import Keycloak from "keycloak-js";
 import axios from "axios";
 
-const history = createHistory();
+const history = createBrowserHistory();
 const middleware = [
   thunk,
   routerMiddleware(history),

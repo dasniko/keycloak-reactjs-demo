@@ -15,11 +15,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.3.12",
-    "react-scripts": "^2.1.2"
+    "react-scripts": "^3.0.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "keycloak-js": "^5.0.0",
+    "axios": "^0.19.0",
+    "keycloak-js": "^6.0.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "5.1.1",
