@@ -9,7 +9,7 @@ import {createBrowserHistory} from 'history';
 import rootReducer from "./modules";
 import BookBox from "./components/BookBox";
 import BookDetails from "./components/BookDetails";
-import Keycloak from "./modules/keycloak";
+import Keycloak from "keycloak-js";
 import axios from "axios";
 
 const history = createBrowserHistory();
@@ -37,10 +37,10 @@ const app = (
 
 const kc = new Keycloak('/keycloak.json');
 kc.init({
-  // onLoad: 'login-required',
   onLoad: 'check-sso',
   promiseType: 'native',
   silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
+  pkceMethod: 'S256',
 })
   .then(authenticated => {
     if (authenticated) {
@@ -48,6 +48,7 @@ kc.init({
       ReactDOM.render(app, document.getElementById("app"));
     } else {
       console.warn("not authenticated!");
+      kc.login();
     }
   });
 

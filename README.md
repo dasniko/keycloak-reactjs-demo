@@ -5,9 +5,9 @@ Demo for React.JS and Keycloak SSO integration.
 ## Prerequisites
 
 - based on React version >= 16.3 and `create-react-app`
-- Keycloak server must be at least version 4.x
+- Keycloak server must be at least version 8.x
 
-## !!! Important Notice !!! 
+## !!! Important Notice !!!
 
 > **This demo is just for showing one possibility on how to configure the app when using Keycloak and it requires a certain knowledge about Keycloak SSO (installation, operation, configuration), see http://www.keycloak.org.**
 
