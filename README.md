@@ -2,6 +2,15 @@
 
 Demo for React.JS and Keycloak SSO integration.
 
+## Silent Check-SSO feature
+
+This demo comes now with the `silent check-sso` feature, introduced in version 8.0.0 of the Keycloak JavaScript adapter.
+Therefor, see [`index.js`](./src/index.js#L40-L42), [`silent-check-sso.html`](./public/silent-check-sso.html) and of course the [official Keycloak docs of the JavaScript adapter.](https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter)
+
+_(Silent check-sso is not the same as silent refresh for implicit flow!
+Implicit flow is today considered as insecure and shouldn't be used anymore.
+Instead, use standard authorization code flow with [PKCE](https://tools.ietf.org/html/rfc7636), which is also supported by Keycloak since version 7.x.)_
+
 ## Prerequisites
 
 - based on React version >= 16.3 and `create-react-app`
