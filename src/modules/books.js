@@ -1,4 +1,5 @@
 import { SUCCESS_SUFFIX } from "redux-axios-middleware";
+import _omit from "lodash/omit";
 import UserService from "../services/UserService";
 import HttpService from "../services/HttpService";
 
@@ -36,7 +37,9 @@ export const addBook = book => {
         data: book,
       },
       options: {
-        onSuccess: ({ dispatch }) => {
+        onSuccess: ({ action, dispatch, response }) => {
+          const payload = _omit(response, 'request');
+          dispatch({ type: action.type + SUCCESS_SUFFIX, payload, meta: { previousAction: action } });
           dispatch(allBooks());
         },
       },
@@ -54,7 +57,9 @@ export const deleteBook = book => {
         method: HttpService.HttpMethods.DELETE,
       },
       options: {
-        onSuccess: ({ dispatch }) => {
+        onSuccess: ({ action, dispatch, response }) => {
+          const payload = _omit(response, 'request');
+          dispatch({ type: action.type + SUCCESS_SUFFIX, payload, meta: { previousAction: action } });
           dispatch(allBooks());
         },
       },

@@ -24,17 +24,11 @@ const initKeycloak = (onAuthenticatedCallback) => {
     })
 };
 
-const doLogin = () => {
-  _kc.login();
-};
+const doLogin = _kc.login;
 
-const doLogout = () => {
-  _kc.logout();
-};
+const doLogout = _kc.logout;
 
-const getToken = () => {
-  return _kc.token;
-};
+const getToken = () => _kc.token;
 
 const updateToken = (successCallback) => {
   return _kc.updateToken(5)
@@ -42,9 +36,7 @@ const updateToken = (successCallback) => {
     .catch(doLogin)
 };
 
-const getUsername = () => {
-  return _kc.tokenParsed.preferred_username;
-};
+const getUsername = () => _kc.tokenParsed.preferred_username;
 
 export default {
   initKeycloak,
