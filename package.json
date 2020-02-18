@@ -27,6 +27,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-redux": "next",
     "redux": "^4.0.4",
+    "redux-axios-middleware": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
   "browserslist": [

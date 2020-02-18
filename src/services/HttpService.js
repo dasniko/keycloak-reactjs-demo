@@ -1,8 +1,16 @@
 import axios from "axios";
 import UserService from "./UserService";
 
+const HttpMethods = {
+  GET: 'GET',
+  POST: 'POST',
+  DELETE: 'DELETE',
+};
+
+const _axios = axios.create();
+
 const configure = () => {
-  axios.interceptors.request.use((config) => {
+  _axios.interceptors.request.use((config) => {
     const cb = () => {
       config.headers.Authorization = `Bearer ${UserService.getToken()}`;
       return Promise.resolve(config);
@@ -11,6 +19,10 @@ const configure = () => {
   });
 };
 
+const getAxiosClient = () => _axios;
+
 export default {
+  HttpMethods,
   configure,
+  getAxiosClient,
 }
