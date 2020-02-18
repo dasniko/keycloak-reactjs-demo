@@ -5,7 +5,7 @@ import {applyMiddleware, createStore} from "redux";
 import {Router, Route, Switch} from "react-router-dom";
 import {routerMiddleware} from "react-router-redux";
 import thunk from "redux-thunk";
-import {createBrowserHistory} from 'history';
+import {createBrowserHistory} from "history";
 import rootReducer from "./modules";
 import BookBox from "./components/BookBox";
 import BookDetails from "./components/BookDetails";

@@ -1,19 +1,19 @@
 import React from "react";
-import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import BookForm from "./BookForm";
 import BookList from "./BookList";
-import * as bookActions from "../modules/books";
+import { allBooks, addBook, deleteBook } from "../modules/books";
 import UserService from "../services/UserService";
 
 class BookBox extends React.Component {
   constructor(props) {
     super(props);
-    props.allBooks();
+    props.dispatch(allBooks());
   }
 
   render() {
-    const {books, deleteBook, addBook} = this.props;
+    const { dispatch, books } = this.props;
     return (
       <div className="bookBox row">
         <h1>
@@ -22,12 +22,17 @@ class BookBox extends React.Component {
         </h1>
         <h1>Best Books ever!</h1>
         <hr/>
-        <BookList books={books} onBookDelete={deleteBook}/>
-        <BookForm onBookSubmit={addBook}/>
+        <BookList books={books} onBookDelete={(book) => dispatch(deleteBook(book))}/>
+        <BookForm onBookSubmit={(book) => dispatch(addBook(book))}/>
       </div>
     );
   }
 }
+
+BookBox.propTypes = {
+  books: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 BookBox.defaultProps = {
   books: [],
@@ -37,8 +42,4 @@ const mapStateToProps = state => ({
   books: state.books,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  ...bookActions,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookBox)
+export default connect(mapStateToProps)(BookBox)

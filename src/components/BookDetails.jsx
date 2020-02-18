@@ -1,16 +1,17 @@
 import React from "react";
-import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import * as bookActions from '../modules/books';
+import { allBooks } from '../modules/books';
 
 class BookDetails extends React.Component {
-  state = {};
-
   constructor(props) {
     super(props);
     if (props.books.length === 0) {
-      props.allBooks();
+      props.dispatch(allBooks());
+    }
+    this.state = {
+      book: null,
     }
   }
 
@@ -39,12 +40,18 @@ class BookDetails extends React.Component {
   }
 }
 
+BookDetails.propTypes = {
+  books: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  match: PropTypes.object,
+};
+
+BookDetails.defaultProps = {
+  books: [],
+};
+
 const mapStateToProps = state => ({
   books: state.books,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  ...bookActions,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookDetails);
+export default connect(mapStateToProps)(BookDetails);
