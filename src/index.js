@@ -1,26 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
-import {applyMiddleware, createStore} from "redux";
 import {Router, Route, Switch} from "react-router-dom";
-import {routerMiddleware} from "react-router-redux";
-import thunk from "redux-thunk";
-import {createBrowserHistory} from "history";
-import rootReducer from "./modules";
 import BookBox from "./components/BookBox";
 import BookDetails from "./components/BookDetails";
+import HttpService from "./services/HttpService";
+import StoreService from "./services/StoreService";
 import UserService from "./services/UserService";
-import axios from "axios";
 
-const history = createBrowserHistory();
-const middleware = [
-  thunk,
-  routerMiddleware(history),
-];
-const store = createStore(
-  rootReducer,
-  applyMiddleware(...middleware)
-);
+const store = StoreService.setup();
+const history = StoreService.browserHistory;
 
 const app = (
   <Provider store={store}>
@@ -38,11 +27,4 @@ const app = (
 const renderApp = () => ReactDOM.render(app, document.getElementById("app"));
 
 UserService.initKeycloak(renderApp);
-
-axios.interceptors.request.use((config) => {
-  const cb = () => {
-    config.headers.Authorization = `Bearer ${UserService.getToken()}`;
-    return Promise.resolve(config);
-  };
-  return UserService.updateToken(cb);
-});
+HttpService.configure();
