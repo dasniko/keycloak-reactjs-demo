@@ -9,7 +9,7 @@ import {createBrowserHistory} from 'history';
 import rootReducer from "./modules";
 import BookBox from "./components/BookBox";
 import BookDetails from "./components/BookDetails";
-import Keycloak from "keycloak-js";
+import UserService from "./services/UserService";
 import axios from "axios";
 
 const history = createBrowserHistory();
@@ -35,28 +35,14 @@ const app = (
   </Provider>
 );
 
-const kc = new Keycloak('/keycloak.json');
-kc.init({
-  onLoad: 'check-sso',
-  promiseType: 'native',
-  silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
-  pkceMethod: 'S256',
-})
-  .then(authenticated => {
-    if (authenticated) {
-      store.getState().keycloak = kc;
-      ReactDOM.render(app, document.getElementById("app"));
-    } else {
-      console.warn("not authenticated!");
-      kc.login();
-    }
-  });
+const renderApp = () => ReactDOM.render(app, document.getElementById("app"));
 
-axios.interceptors.request.use(config => (
-  kc.updateToken(5)
-    .then(() => {
-      config.headers.Authorization = 'Bearer ' + kc.token;
-      return Promise.resolve(config)
-    })
-    .catch(kc.login)
-));
+UserService.initKeycloak(renderApp);
+
+axios.interceptors.request.use((config) => {
+  const cb = () => {
+    config.headers.Authorization = `Bearer ${UserService.getToken()}`;
+    return Promise.resolve(config);
+  };
+  return UserService.updateToken(cb);
+});

@@ -1,4 +1,5 @@
 import axios from 'axios/index';
+import UserService from "../services/UserService";
 
 const LIST_BOOKS = 'LIST_BOOKS';
 
@@ -25,8 +26,8 @@ export const allBooks = () => (
 );
 
 export const addBook = book => (
-  (dispatch, getState) => {
-    console.log(`${getState().keycloak.tokenParsed.preferred_username} added the book ${book.title}`);
+  dispatch => {
+    console.log(`${UserService.getUsername()} added the book ${book.title}`);
     axios.post('/demo/books', book)
       .then(() => {
         dispatch(allBooks());
@@ -35,8 +36,8 @@ export const addBook = book => (
 );
 
 export const deleteBook = book => (
-  (dispatch, getState) => {
-    console.log(`${getState().keycloak.tokenParsed.preferred_username} deletes the book ${book.title}`);
+  dispatch => {
+    console.log(`${UserService.getUsername()} deletes the book ${book.title}`);
     axios.delete('/demo/books/' + book.id)
       .then(() => {
         dispatch(allBooks());

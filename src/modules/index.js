@@ -4,6 +4,5 @@ import books from "./books";
 
 export default combineReducers({
   books,
-  keycloak: (keycloak = {}) => keycloak,
   routing: routerReducer,
 });
