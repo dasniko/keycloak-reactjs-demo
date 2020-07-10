@@ -13,7 +13,7 @@ Instead, use standard authorization code flow with [PKCE](https://tools.ietf.org
 
 ## Prerequisites
 
-- based on React version >= 16.3 and `create-react-app`
+- based on React version >= 16.8 (using hooks) and `create-react-app`
 - Keycloak server must be at least version 9.x
   (no more legacy Keycloak promise API, only native promise API)
 
