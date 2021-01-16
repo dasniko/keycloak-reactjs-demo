@@ -1,19 +1,15 @@
 import thunk from "redux-thunk";
 import {createBrowserHistory} from "history";
-import {routerMiddleware} from "react-router-redux";
 import {applyMiddleware, compose, createStore} from "redux";
 import axiosMiddleware from "redux-axios-middleware";
 import logger from "redux-logger";
 import rootReducer from "../modules";
 import HttpService from "./HttpService";
 
-const browserHistory = createBrowserHistory();
-
 const setup = () => {
   const enhancers = [];
   const middleware = [
     thunk,
-    routerMiddleware(browserHistory),
     axiosMiddleware(HttpService.getAxiosClient())
   ];
 
@@ -23,10 +19,12 @@ const setup = () => {
 
   const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-  return createStore(rootReducer, composedEnhancers);
+  const store = createStore(rootReducer, composedEnhancers);
+  const history = createBrowserHistory();
+
+  return { history, store };
 };
 
 export default {
-  browserHistory,
   setup,
 }
