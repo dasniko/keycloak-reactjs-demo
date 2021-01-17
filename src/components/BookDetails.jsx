@@ -6,13 +6,13 @@ import {allBooks} from '../modules/books';
 export default function BookDetails({match}) {
 
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
+  const { books } = useSelector((state) => state);
 
   const book = books.find(book => book.id === parseInt(match.params.bookId, 10));
 
   React.useEffect(() => {
     dispatch(allBooks())
-  }, [dispatch]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return book ? (
     <div className="bookDetails row">

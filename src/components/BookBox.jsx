@@ -8,11 +8,11 @@ import UserService from "../services/UserService";
 export default function BookBox() {
 
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
+  const { books } = useSelector((state) => state);
 
   React.useEffect(() => {
     dispatch(allBooks())
-  }, [dispatch]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="bookBox row">
