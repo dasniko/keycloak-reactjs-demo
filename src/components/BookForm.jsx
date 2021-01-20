@@ -1,9 +1,9 @@
-import React from "react";
+import { useState } from "react";
 
 export default function BookForm({onBookSubmit}) {
 
-  const [author, setAuthor] = React.useState('');
-  const [title, setTitle] = React.useState('');
+  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();

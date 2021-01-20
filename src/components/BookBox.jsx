@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import BookForm from "./BookForm";
 import BookList from "./BookList";
@@ -10,7 +10,7 @@ export default function BookBox() {
   const dispatch = useDispatch();
   const { books } = useSelector((state) => state);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(allBooks())
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

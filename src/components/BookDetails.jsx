@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {allBooks} from '../modules/books';
@@ -10,7 +10,7 @@ export default function BookDetails({match}) {
 
   const book = books.find(book => book.id === parseInt(match.params.bookId, 10));
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(allBooks())
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
