@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-export default ({book, onBookDelete}) => (
+const Book = ({book, onBookDelete}) => (
   <div className="book">
     <h3>{book.author}</h3>
     <span className="lead">
@@ -12,4 +12,6 @@ export default ({book, onBookDelete}) => (
     </button>
     <hr/>
   </div>
-)
+);
+
+export default Book

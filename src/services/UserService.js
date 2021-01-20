@@ -37,11 +37,13 @@ const updateToken = (successCallback) => {
 
 const getUsername = () => _kc.tokenParsed.preferred_username;
 
-export default {
+const UserService = {
   initKeycloak,
   doLogin,
   doLogout,
   getToken,
   updateToken,
   getUsername,
-}
+};
+
+export default UserService;

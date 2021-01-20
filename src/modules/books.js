@@ -7,7 +7,7 @@ const LIST_BOOKS = 'LIST_BOOKS';
 const ADD_BOOK = 'ADD_BOOK';
 const DELETE_BOOK = 'DELETE_BOOK';
 
-export default (state = [], action) => {
+const booksReducer = (state = [], action) => {
   switch (action.type) {
     case LIST_BOOKS + SUCCESS_SUFFIX:
       return  action.payload.data;
@@ -16,6 +16,8 @@ export default (state = [], action) => {
       return state;
   }
 };
+
+export default booksReducer;
 
 export const allBooks = () => ({
   type: LIST_BOOKS,

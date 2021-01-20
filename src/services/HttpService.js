@@ -21,8 +21,10 @@ const configure = () => {
 
 const getAxiosClient = () => _axios;
 
-export default {
+const HttpService = {
   HttpMethods,
   configure,
   getAxiosClient,
-}
+};
+
+export default HttpService;

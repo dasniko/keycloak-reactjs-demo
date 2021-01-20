@@ -25,6 +25,8 @@ const setup = () => {
   return { history, store };
 };
 
-export default {
+const StoreService = {
   setup,
-}
+};
+
+export default StoreService;
