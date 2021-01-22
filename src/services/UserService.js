@@ -14,12 +14,11 @@ const initKeycloak = (onAuthenticatedCallback) => {
     pkceMethod: 'S256',
   })
     .then((authenticated) => {
-      if (authenticated) {
+      // if (authenticated) {
         onAuthenticatedCallback();
-      } else {
-        console.warn("not authenticated!");
-        doLogin();
-      }
+      // } else {
+      //   doLogin();
+      // }
     })
 };
 
@@ -28,6 +27,8 @@ const doLogin = _kc.login;
 const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
+
+const isLoggedIn = () => !!_kc.token;
 
 const updateToken = (successCallback) =>
   _kc.updateToken(5)
@@ -42,6 +43,7 @@ const UserService = {
   initKeycloak,
   doLogin,
   doLogout,
+  isLoggedIn,
   getToken,
   updateToken,
   getUsername,

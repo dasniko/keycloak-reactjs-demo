@@ -11,11 +11,13 @@ const _axios = axios.create();
 
 const configure = () => {
   _axios.interceptors.request.use((config) => {
-    const cb = () => {
-      config.headers.Authorization = `Bearer ${UserService.getToken()}`;
-      return Promise.resolve(config);
-    };
-    return UserService.updateToken(cb);
+    if (UserService.isLoggedIn()) {
+      const cb = () => {
+        config.headers.Authorization = `Bearer ${UserService.getToken()}`;
+        return Promise.resolve(config);
+      };
+      return UserService.updateToken(cb);
+    }
   });
 };
 
