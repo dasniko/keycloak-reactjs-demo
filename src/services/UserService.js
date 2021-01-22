@@ -29,13 +29,13 @@ const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
 
-const updateToken = (successCallback) => {
-  return _kc.updateToken(5)
+const updateToken = (successCallback) =>
+  _kc.updateToken(5)
     .then(successCallback)
-    .catch(doLogin)
-};
+    .catch(doLogin);
 
-const getUsername = () => _kc.tokenParsed.preferred_username;
+const getUsername = () => _kc.tokenParsed?.preferred_username;
+
 
 const UserService = {
   initKeycloak,
