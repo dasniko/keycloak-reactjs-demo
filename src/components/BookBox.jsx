@@ -4,6 +4,7 @@ import BookForm from "./BookForm";
 import BookList from "./BookList";
 import {addBook, allBooks, deleteBook} from "../modules/books";
 import UserService from "../services/UserService";
+import RenderOnRole from "./RenderOnRole";
 
 export default function BookBox() {
 
@@ -23,7 +24,9 @@ export default function BookBox() {
       <h1>Best Books ever!</h1>
       <hr/>
       <BookList books={books} onBookDelete={(book) => dispatch(deleteBook(book))}/>
-      <BookForm onBookSubmit={(book) => dispatch(addBook(book))}/>
+      <RenderOnRole roles={['user']}>
+        <BookForm onBookSubmit={(book) => dispatch(addBook(book))}/>
+      </RenderOnRole>
     </div>
   );
 }
