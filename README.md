@@ -2,6 +2,17 @@
 
 Demo for React.JS and Keycloak SSO integration.
 
+## YouTube videos
+
+There are two videos on YouTube about this demo repository and how to integrate your React.js based application with Keycloak:
+
+* Part 1: https://youtu.be/q50LxyGtEf0
+* Part 2: https://youtu.be/zIoWxY3Xhnw
+
+Please check out also my entire Youtube Channel with various videos on Keycloak and stuff around:
+
+> https://www.youtube.com/c/NikoKöbler
+
 ## Silent Check-SSO feature
 
 This demo comes now with the `silent check-sso` feature, introduced in version 8.x of the Keycloak JavaScript adapter.
