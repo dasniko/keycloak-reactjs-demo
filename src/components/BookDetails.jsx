@@ -1,14 +1,16 @@
 import { useEffect } from "react";
+import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {allBooks} from '../modules/books';
 
-export default function BookDetails({match}) {
+export default function BookDetails() {
 
+  const { bookId } = useParams();
   const dispatch = useDispatch();
   const { books } = useSelector((state) => state);
 
-  const book = books.find(book => book.id === parseInt(match.params.bookId, 10));
+  const book = books.find(book => book.id === parseInt(bookId, 10));
 
   useEffect(() => {
     dispatch(allBooks())

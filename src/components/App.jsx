@@ -1,25 +1,30 @@
-import PropTypes from 'prop-types';
 import {Provider} from "react-redux";
-import {Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import BookBox from "../components/BookBox";
 import BookDetails from "../components/BookDetails";
+import NoMatch from "./NoMatch";
+import StoreService from "../services/StoreService";
 
-const App = ({ store, history }) => (
+const store = StoreService.setup();
+
+const App = () => (
   <Provider store={store}>
-    <Router history={history}>
+    <BrowserRouter>
       <div className="container">
         <Switch>
-          <Route exact path="/" component={BookBox}/>
-          <Route path="/books/:bookId" component={BookDetails}/>
+          <Route exact path="/">
+            <BookBox/>
+          </Route>
+          <Route path="/books/:bookId">
+            <BookDetails/>
+          </Route>
+          <Route path="*">
+            <NoMatch/>
+          </Route>
         </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   </Provider>
 );
-
-App.propTypes = {
-  history: PropTypes.any.isRequired,
-  store: PropTypes.any.isRequired
-};
 
 export default App;

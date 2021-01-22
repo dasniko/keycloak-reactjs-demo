@@ -1,5 +1,4 @@
 import thunk from "redux-thunk";
-import {createBrowserHistory} from "history";
 import {applyMiddleware, compose, createStore} from "redux";
 import axiosMiddleware from "redux-axios-middleware";
 import logger from "redux-logger";
@@ -19,10 +18,7 @@ const setup = () => {
 
   const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-  const store = createStore(rootReducer, composedEnhancers);
-  const history = createBrowserHistory();
-
-  return { history, store };
+  return createStore(rootReducer, composedEnhancers);
 };
 
 const StoreService = {
