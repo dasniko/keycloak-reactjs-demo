@@ -11,6 +11,7 @@ const Menu = () => (
         <ul className="nav navbar-nav">
           <li><Link to="/">List</Link></li>
           <li><Link to="/books/new">New Book</Link></li>
+          <li><Link to="/secret">Secret Books</Link></li>
           <li><Link to="/foo">No Match</Link></li>
         </ul>
         <button className="btn btn-success navbar-btn navbar-right" style={{ marginRight: 0 }} onClick={() => UserService.doLogout()}>
