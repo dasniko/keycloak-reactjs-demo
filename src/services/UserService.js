@@ -15,7 +15,7 @@ const initKeycloak = (onAuthenticatedCallback) => {
   })
     .then((authenticated) => {
       // if (authenticated) {
-        onAuthenticatedCallback();
+      onAuthenticatedCallback();
       // } else {
       //   doLogin();
       // }

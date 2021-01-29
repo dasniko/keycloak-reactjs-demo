@@ -1,8 +1,5 @@
 import UserService from "../services/UserService";
 
-export default function RenderOnAnonymous({ children }) {
-  if (!UserService.isLoggedIn())
-    return children;
+const RenderOnAnonymous = ({ children }) => (!UserService.isLoggedIn()) ? children : null;
 
-  return null;
-}
+export default RenderOnAnonymous

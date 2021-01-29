@@ -1,7 +1,7 @@
-import thunk from "redux-thunk";
-import {applyMiddleware, compose, createStore} from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import axiosMiddleware from "redux-axios-middleware";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 import rootReducer from "../modules";
 import HttpService from "./HttpService";
 

@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
 import UserService from "../services/UserService";
 
-export default function RenderOnRole({ roles, children }) {
-  if (!UserService.hasRole(roles))
-    return null;
-
-  return children;
-}
+const RenderOnRole = ({ roles, children }) => (UserService.hasRole(roles)) ? children : null;
 
 RenderOnRole.propTypes = {
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
+
+export default RenderOnRole
