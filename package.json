@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^17.0.0",
+    "http-proxy-middleware": "^2.0.1",
     "prop-types": "^15.7.2",
     "react-scripts": "^4.0.1"
   },
