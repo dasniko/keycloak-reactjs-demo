@@ -14,12 +14,12 @@ const initKeycloak = (onAuthenticatedCallback) => {
     pkceMethod: 'S256',
   })
     .then((authenticated) => {
-      // if (authenticated) {
+      if (!authenticated) {
+        console.log("user is not authenticated..!");
+      }
       onAuthenticatedCallback();
-      // } else {
-      //   doLogin();
-      // }
     })
+    .catch(console.error);
 };
 
 const doLogin = _kc.login;
