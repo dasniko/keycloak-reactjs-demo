@@ -1,6 +1,6 @@
 {
   "realm": "bookshop",
-  "auth-server-url": "http://localhost:8080/auth/",
+  "auth-server-url": "http://localhost:8080/",
   "ssl-required": "external",
   "resource": "bookBox",
   "public-client": true,
