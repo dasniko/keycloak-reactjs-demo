@@ -1,5 +1,4 @@
 import { SUCCESS_SUFFIX } from "redux-axios-middleware";
-import HttpService from "../services/HttpService";
 import UserService from "../services/UserService";
 
 const LIST_BOOKS = 'LIST_BOOKS';
@@ -37,7 +36,7 @@ export const addBook = book => {
     payload: {
       request: {
         url: '/demo/books',
-        method: HttpService.HttpMethods.POST,
+        method: 'POST',
         data: book,
       },
     },
@@ -52,7 +51,7 @@ export const deleteBook = book => {
       book,
       request: {
         url: `/demo/books/${book.id}`,
-        method: HttpService.HttpMethods.DELETE,
+        method: 'DELETE',
       },
     },
   }
