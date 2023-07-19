@@ -10,7 +10,7 @@ import UserService from "./services/UserService";
 
 // HTTP
 
-const _axios = axios.create();
+const _axios = axios.create({ baseURL: 'https://erah07zkak.execute-api.eu-central-1.amazonaws.com' });
 _axios.interceptors.request.use((config) => {
   if (UserService.isLoggedIn()) {
     const cb = () => {
