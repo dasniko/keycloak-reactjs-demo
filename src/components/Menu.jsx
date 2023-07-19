@@ -17,8 +17,16 @@ const Menu = () => (
         <button className="btn btn-success navbar-btn navbar-right" style={{ marginRight: 0 }} onClick={() => UserService.doLogout()}>
           Logout
         </button>
-        <p className="navbar-text navbar-right" style={{ marginRight: 15 }}>
+        <p className="navbar-text navbar-right" style={{ margin: 15 }}>
           Signed in as {UserService.getUsername()}
+        </p>
+        {UserService.getTokenParsed().acr !== 'gold' && (
+        <button className="btn btn-warning navbar-btn navbar-right"
+                onClick={() => UserService.doLogin({ acr: { values: ['gold'], essential: true } })}>
+          Step-Up (Gold)
+        </button>)}
+        <p className="navbar-text navbar-right" style={{ margin: 15 }} title="Authentication Context Class Reference">
+          ACR: {UserService.getTokenParsed().acr}
         </p>
       </div>
     </div>

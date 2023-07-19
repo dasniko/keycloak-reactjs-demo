@@ -28,6 +28,8 @@ const doLogout = _kc.logout;
 
 const getToken = () => _kc.token;
 
+const getTokenParsed = () => _kc.tokenParsed;
+
 const isLoggedIn = () => !!_kc.token;
 
 const updateToken = (successCallback) =>
@@ -45,6 +47,7 @@ const UserService = {
   doLogout,
   isLoggedIn,
   getToken,
+  getTokenParsed,
   updateToken,
   getUsername,
   hasRole,
