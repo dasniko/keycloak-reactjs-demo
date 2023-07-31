@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { createSelector } from "reselect";
 import { allBooks, deleteBook } from "../modules/books";
 
 const BookList = () => {
 
   const dispatch = useDispatch();
-  const { books } = useSelector((state) => state);
+  const books = useSelector(createSelector((s) => s.books, (books) => books));
 
   useEffect(() => {
     dispatch(allBooks())

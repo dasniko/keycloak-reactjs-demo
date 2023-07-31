@@ -1,5 +1,5 @@
 import axios from "axios";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { applyMiddleware, createStore } from "redux";
 import axiosMiddleware from "redux-axios-middleware";
 import thunk from "redux-thunk";
@@ -29,6 +29,6 @@ const store = createStore(rootReducer, _middleware);
 
 // APP
 
-const renderApp = () => ReactDOM.render(<App store={store}/>, document.getElementById("app"));
+const renderApp = () => createRoot(document.getElementById("app")).render(<App store={store}/>);
 
 UserService.initKeycloak(renderApp);

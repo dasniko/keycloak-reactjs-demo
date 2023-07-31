@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { createSelector } from "reselect";
 import { allBooks } from '../modules/books';
 
 const BookDetails = () => {
 
   const { bookId } = useParams();
   const dispatch = useDispatch();
-  const { books } = useSelector((state) => state);
+  const books = useSelector(createSelector((s) => s.books, (books) => books));
   const [book, setBook] = useState();
 
   useEffect(() => {

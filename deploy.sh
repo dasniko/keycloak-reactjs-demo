@@ -1,4 +1,3 @@
 #!/bin/bash
 yarn build
-docker build --pull -t dasniko/bookbox -f ./deployment/Dockerfile .
-docker push dasniko/bookbox
+docker buildx build --pull --platform linux/amd64,linux/arm64 -t dasniko/bookbox -f ./deployment/Dockerfile . --push
