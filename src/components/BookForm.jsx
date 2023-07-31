@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { addBook } from "../modules/books";
 import RenderOnRole from "./RenderOnRole";
 
@@ -10,7 +10,7 @@ const BookForm = () => {
   const [title, setTitle] = useState('');
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ const BookForm = () => {
       return;
     }
     dispatch(addBook({ author, title }))
-      .then(() => history.push("/"))
+      .then(() => navigate("/"))
   };
 
   return (

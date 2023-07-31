@@ -24,9 +24,9 @@ https://youtu.be/es8sf8D7UyQ
 
 ## Prerequisites
 
-- based on React version >= 16.8 (using hooks) and `create-react-app`
-- Keycloak server must be at least version 9.x
-  (no more legacy Keycloak promise API, only native promise API)
+- based on React version >= 18 (using hooks) and `create-react-app`
+- uses React Router v6
+- Keycloak server should be a most recent one
 
 ## !!! Important Notice !!!
 
@@ -34,7 +34,8 @@ https://youtu.be/es8sf8D7UyQ
 
 ## Backend service
 
-For convenience, I provide a backend service running at the location specified in [`setupProxy.js`](./src/setupProxy.js) file.
+For convenience, I provide a working backend service, providing the data, running on AWS Lambda.
+It should work and be available out of the box.
 
 However, there's also a swagger spec ([`backend-swagger-spec.yml`](./backend-swagger-spec.yml)) providing the API of the needed backend, so you can spin up a service on your own.
 The URLs in the `securityDefinitions` section shows my local Keycloak setup, you have to adjust this possibly!
