@@ -24,7 +24,7 @@ https://youtu.be/es8sf8D7UyQ
 
 ## Prerequisites
 
-- based on React version >= 18 (using hooks) and `create-react-app`
+- based on React version >= 18 and Vite
 - uses React Router v6
 - Keycloak server should be a most recent one
 
