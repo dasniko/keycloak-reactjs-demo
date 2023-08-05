@@ -17,7 +17,7 @@ const BookList = () => {
     <div className="row">
       <div className="col-sm-12">
         <h1>Books to Read Before You Die</h1>
-        <table className="table table-striped">
+        <table className="table table-striped align-middle">
           <thead>
           <tr>
             <th>ID</th>
