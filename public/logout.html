@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>React Keycloak Example - Logout</title>
+  <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="my-5 p-5 bg-body-secondary rounded-3">
+    <h1 class="text-body-ephasis">Thank you for using BookBox!</h1>
+    <p class="lead">You are logged out successfully.</p>
+    <p>
+      <a href="/" class="btn btn-lg btn-info">Start again</a>
+    </p>
+  </div>
+</div>
+<script>
+  (function () {
+    const htmlElement = document.querySelector("html")
+    if(htmlElement.getAttribute("data-bs-theme") === 'auto') {
+      function updateTheme() {
+        document.querySelector("html").setAttribute("data-bs-theme",
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+      updateTheme();
+    }
+  })()
+</script>
+</body>
+</html>

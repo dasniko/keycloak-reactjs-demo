@@ -10,6 +10,7 @@ const _kc = new Keycloak('/keycloak.json');
 const initKeycloak = (onAuthenticatedCallback) => {
   _kc.init({
     onLoad: 'check-sso',
+    // onLoad: 'login-required',
     silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
     pkceMethod: 'S256',
   })
@@ -24,7 +25,9 @@ const initKeycloak = (onAuthenticatedCallback) => {
 
 const doLogin = _kc.login;
 
-const doLogout = _kc.logout;
+const doLogout = () => _kc.logout({
+  redirectUri: window.location.origin + '/logout.html',
+});
 
 const getToken = () => _kc.token;
 
