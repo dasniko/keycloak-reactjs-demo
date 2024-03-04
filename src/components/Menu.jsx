@@ -24,7 +24,7 @@ const Menu = () => (
           <div className="navbar-text mx-1">
             Signed in as <b>{UserService.getUsername()}</b>
           </div>
-          <button className="btn btn-sm btn-success mx-1" onClick={() => UserService.doLogout()}>
+          <button className="btn btn-sm btn-success ms-1" onClick={() => UserService.doLogout()}>
             Logout
           </button>
         </div>
